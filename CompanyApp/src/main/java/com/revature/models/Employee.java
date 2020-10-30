@@ -2,6 +2,8 @@ package com.revature.models;
 
 import java.io.Serializable;
 
+import com.revature.exceptions.MonthlySalaryException;
+
 public class Employee implements Serializable {
 
 	/**
@@ -12,8 +14,9 @@ public class Employee implements Serializable {
 	private String name;
 	private double monthlySalary;
 	private String position;
-	private int managerId;
+	private Integer managerId;
 	private Department department;
+	private String e = "Monthly salary can not exceed 9999.99";
 	
 	public Employee() {
 		super();
@@ -35,8 +38,14 @@ public class Employee implements Serializable {
 	public double getMonthlySalary() {
 		return monthlySalary;
 	}
-	public void setMonthlySalary(double monthlySalary) {
-		this.monthlySalary = monthlySalary;
+	public void setMonthlySalary(double monthlySalary) throws MonthlySalaryException {
+		
+		if(monthlySalary < 1000000) {
+			this.monthlySalary = monthlySalary;
+		} else {
+				throw new MonthlySalaryException(e);
+		}
+		
 	}
 	public String getPosition() {
 		return position;
@@ -48,7 +57,7 @@ public class Employee implements Serializable {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", monthlySalary=" + monthlySalary + ", position=" + position
-				+ ", managerId=" + managerId + ", department=" + department + "]";
+				+ ", managerId=" + managerId + ", department=" + department + "]\n";
 	}
 
 	@Override
@@ -99,19 +108,36 @@ public class Employee implements Serializable {
 		return true;
 	}
 
-	public int getManagerId() {
+	public Integer getManagerId() {
 		return managerId;
 	}
 
-	public void setManagerId(int managerId) {
+	public void setManagerId(Integer managerId) {
 		this.managerId = managerId;
 	}
 
-	public Employee(int id, String name, double monthlySalary, String position, int managerId, Department department) {
+	public Employee(int id, String name, double monthlySalary, String position, Integer managerId, Department department) throws MonthlySalaryException {
 		super();
 		this.id = id;
 		this.name = name;
-		this.monthlySalary = monthlySalary;
+		if(monthlySalary < 10000) {
+			this.monthlySalary = monthlySalary;
+		} else {
+				throw new MonthlySalaryException(e);
+		}
+		this.position = position;
+		this.managerId = managerId;
+		this.department = department;
+	}
+	
+	public Employee(String name, double monthlySalary, String position, Integer managerId, Department department) throws MonthlySalaryException {
+		super();
+		this.name = name;
+		if(monthlySalary < 10000) {
+			this.monthlySalary = monthlySalary;
+		} else {
+				throw new MonthlySalaryException(e);
+		}
 		this.position = position;
 		this.managerId = managerId;
 		this.department = department;
@@ -120,6 +146,7 @@ public class Employee implements Serializable {
 	public Department getDepartment() {
 		return department;
 	}
+	
 	public void setDepartment(Department department) {
 		this.department = department;
 	}

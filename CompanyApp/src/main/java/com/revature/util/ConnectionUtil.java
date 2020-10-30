@@ -12,9 +12,9 @@ public class ConnectionUtil {
 
 	public static Connection getHardCodedConnection() throws SQLException {
 
-		String url = "jdbc:postgresql://localhost:5432/postgres";
+		String url = "jdbc:postgresql://localhost:5433/postgres";
 		String username = "postgres";
-		String password = "p4ssw0rd";
+		String password = "password123";
 
 		if (connection == null || connection.isClosed()) {
 			connection = DriverManager.getConnection(url, username, password);
