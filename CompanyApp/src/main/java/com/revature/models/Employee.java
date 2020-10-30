@@ -14,6 +14,7 @@ public class Employee implements Serializable {
 	private String position;
 	private int managerId;
 	private Department department;
+	private int departmentId;
 	
 	public Employee() {
 		super();
@@ -43,6 +44,15 @@ public class Employee implements Serializable {
 	}
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+	
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 
 	@Override
@@ -115,6 +125,17 @@ public class Employee implements Serializable {
 		this.position = position;
 		this.managerId = managerId;
 		this.department = department;
+	}
+	
+	
+
+	public Employee(String name, double monthlySalary, String position, int managerId, int department) {
+		super();
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position = position;
+		this.managerId = managerId;
+		this.departmentId = department;
 	}
 
 	public Department getDepartment() {
