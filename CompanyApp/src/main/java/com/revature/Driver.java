@@ -1,42 +1,28 @@
 package com.revature;
 
+import com.revature.models.Department;
+import com.revature.models.Employee;
 import com.revature.services.DepartmentService;
+import com.revature.services.EmployeeService;
 
 public class Driver {
 
+	private static EmployeeService es = new EmployeeService();
 	private static DepartmentService ds = new DepartmentService();
 	
 	public static void main(String[] args) {
+//		System.out.println(es.getAllEmployees());
+//		System.out.println(es.getEmployeeById(1));
 		
-//		try {
-//			
-//			Connection c = ConnectionUtil.getConnection();
-//			String driverName = c.getMetaData().getDriverName();
-//			System.out.println(driverName);
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-	
+//		Department fun = ds.getDepartmentById(1);
+//		Employee e1 = new Employee("Dwight Schroot", 2500.0, "Assistant to the Regional manager", 1, fun);
+//		e1.setId(14);
+//		System.out.println(es.createEmployee(e1));
 
-//		System.out.println(ds.getAllDepartments());
-//		System.out.println(ds.getDepartmentById(1));
+//		e1.setMonthlySalary(4000.0);
+//		System.out.println(es.updateEmployee(e1));
 		
-//		Department d = new Department("Coffee", 5000);
-//		System.out.println(ds.createDepartment(d));
-//		System.out.println(ds.getAllDepartments());
-		
-//		Department d1 = ds.getDepartmentById(13);
-//		d1.setMonthlyBudget(200);
-//		ds.updateDepartment(d1);
-//		System.out.println(ds.getDepartmentById(13));
-		
-//		System.out.println(ds.deleteDepartment(13));
-		
-		System.out.println(ds.getDepartmentById(1));
-		ds.budgetIncrease(500, 1);
-		System.out.println(ds.getDepartmentById(1));
+		System.out.println(es.deleteEmployee(14));
 	}
 
 }

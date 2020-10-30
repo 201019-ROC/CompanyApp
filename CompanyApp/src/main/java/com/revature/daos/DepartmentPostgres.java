@@ -46,7 +46,7 @@ public class DepartmentPostgres implements DepartmentDao {
 		ResultSet rs = null;
 		String sql = "select * from company.departments where dept_id = ?";
 
-		try (Connection c = ConnectionUtil.getConnection()) {
+		try (Connection c = ConnectionUtil.getHardCodedConnection()) {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
@@ -92,7 +92,7 @@ public class DepartmentPostgres implements DepartmentDao {
 		int departmentsUpdated = 0;
 		String sql = "update company.departments set dept_name = ? , monthly_budget = ? where dept_id = ?";
 		
-		try (Connection c = ConnectionUtil.getConnection()) {
+		try (Connection c = ConnectionUtil.getHardCodedConnection()) {
 			PreparedStatement ps = c.prepareStatement(sql);
 			
 			ps.setString(1, d.getName());
