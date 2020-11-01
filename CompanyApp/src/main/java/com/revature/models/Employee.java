@@ -15,9 +15,13 @@ public class Employee implements Serializable {
 	private int managerId;
 	private Department department;
 	
-	public Employee() {
+	public Employee(String name, double monthlySalary, String position, int managerId, Department department) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position = position;
+		this.managerId = managerId;
+		this.department = department;
 	}
 
 	public int getId() {
@@ -48,7 +52,7 @@ public class Employee implements Serializable {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", monthlySalary=" + monthlySalary + ", position=" + position
-				+ ", managerId=" + managerId + ", department=" + department + "]";
+				+ ", managerId=" + managerId + ", department=" + department + "]" + "\n";
 	}
 
 	@Override

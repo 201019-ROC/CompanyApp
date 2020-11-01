@@ -50,7 +50,7 @@ public class Department implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + ", monthlyBudget=" + monthlyBudget + "]";
+		return "Departments [id=" + id + ", name=" + name + ", monthlyBudget=" + monthlyBudget + "]" +"\n";
 	}
 	public Department(int id, String name, double monthlyBudget) {
 		super();
