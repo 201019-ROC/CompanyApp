@@ -13,13 +13,49 @@ public class Employee implements Serializable {
 	private double monthlySalary;
 	private String position;
 	private int managerId;
+	private int deptId;
 	private Department department;
-	
-	public Employee() {
-		super();
-		// TODO Auto-generated constructor stub
+
+
+	public Employee( String name, double monthlySalary, String position, int managerId, int deptId){
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position = position;
+		this.managerId = managerId;
+		this.deptId = deptId; // this field should refer to field id in department class, I tried so many times to make it work but I couldn't, I always get a nullException
+											// I just did it in the setter method. 
+	}
+	public Employee(int id, String name, double monthlySalary, String position, int managerId) {
+		this.id = id;
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position = position;
+		this.managerId = managerId;
 	}
 
+	public Employee(int id, String name, double monthlySalary, String position, int managerId, int deptId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position = position;
+		this.managerId = managerId;
+	    this.deptId = deptId;
+		}
+
+
+
+	public int getDeptId() {
+		return  deptId;
+	}
+
+	public void setDeptId (int deptId) {
+		if (this.deptId == department.getId()) {
+			this.deptId = deptId;
+		} else {
+			System.out.println("Invalid dept_id");
+		}
+	}
 	public int getId() {
 		return id;
 	}
@@ -35,6 +71,7 @@ public class Employee implements Serializable {
 	public double getMonthlySalary() {
 		return monthlySalary;
 	}
+
 	public void setMonthlySalary(double monthlySalary) {
 		this.monthlySalary = monthlySalary;
 	}
@@ -105,16 +142,6 @@ public class Employee implements Serializable {
 
 	public void setManagerId(int managerId) {
 		this.managerId = managerId;
-	}
-
-	public Employee(int id, String name, double monthlySalary, String position, int managerId, Department department) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.monthlySalary = monthlySalary;
-		this.position = position;
-		this.managerId = managerId;
-		this.department = department;
 	}
 
 	public Department getDepartment() {
