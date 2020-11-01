@@ -11,5 +11,9 @@ public interface EmployeeDao {
 	public int createEmployee(Employee e);
 	public int updateEmployee(Employee e);
 	public int deleteEmployee(int id);
+	
+	//give prize (% of salary) for each employee in department
+	//prizeEmployee(the name of department, percentage of salary)
+	public void prizeEmployee(String department, int prize);
 
 }

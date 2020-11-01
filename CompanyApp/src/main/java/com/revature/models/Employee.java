@@ -1,6 +1,10 @@
 package com.revature.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+//import com.revature.daos.DepartmentDao;
 
 public class Employee implements Serializable {
 
@@ -13,7 +17,7 @@ public class Employee implements Serializable {
 	private double monthlySalary;
 	private String position;
 	private int managerId;
-	private Department department;
+	private int departmentId;
 	
 	public Employee() {
 		super();
@@ -48,14 +52,14 @@ public class Employee implements Serializable {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", monthlySalary=" + monthlySalary + ", position=" + position
-				+ ", managerId=" + managerId + ", department=" + department + "]";
+				+ ", managerId=" + managerId + ", department=" + departmentId + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((department == null) ? 0 : department.hashCode());
+		result = prime * result + departmentId;
 		result = prime * result + id;
 		result = prime * result + managerId;
 		long temp;
@@ -66,6 +70,8 @@ public class Employee implements Serializable {
 		return result;
 	}
 
+	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,10 +81,7 @@ public class Employee implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (department == null) {
-			if (other.department != null)
-				return false;
-		} else if (!department.equals(other.department))
+		if (departmentId != other.departmentId)
 			return false;
 		if (id != other.id)
 			return false;
@@ -106,22 +109,33 @@ public class Employee implements Serializable {
 	public void setManagerId(int managerId) {
 		this.managerId = managerId;
 	}
-
-	public Employee(int id, String name, double monthlySalary, String position, int managerId, Department department) {
+	
+	public Employee(int id, String name, double monthlySalary, String position, int managerId, int departmentId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.monthlySalary = monthlySalary;
 		this.position = position;
 		this.managerId = managerId;
-		this.department = department;
+		this.departmentId = departmentId;
+	}
+	
+	public Employee(String name, double monthlySalary, String position, int managerId, int departmentId) {
+		super();
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position = position;
+		this.managerId = managerId;
+		this.departmentId = departmentId;
 	}
 
-	public Department getDepartment() {
-		return department;
+	
+	public int getDepartmentId() {
+		return departmentId;
 	}
-	public void setDepartment(Department department) {
-		this.department = department;
+	
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 
 	
