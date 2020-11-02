@@ -9,11 +9,43 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.models.Department;
 import com.revature.models.Employee;
+import com.revature.services.DepartmentService;
 import com.revature.util.ConnectionUtil;
 
 public class EmployeePostgres implements EmployeeDao {
 
+	// GET Employee(String name, double monthlySalary, String position, int managerId, int departmentId)
+//	@Override
+//	public List<Employee> getEmployees() {
+//
+//		List<Employee> employees = new ArrayList<>();
+//		String sql = "select * from company.employees";
+//
+//		try (Connection c = ConnectionUtil.getConnection()) {
+//			Statement s = c.createStatement();
+//			ResultSet rs = s.executeQuery(sql);
+//
+//			while (rs.next()) {
+//				int emplId = rs.getInt("empl_id");
+//				String emplName = rs.getString("empl_name");
+//				double salary = rs.getDouble("monthly_salary");
+//				String emplPosition = rs.getString("empl_position");
+//				int managerId = rs.getInt("manager_id");
+//				int dept = rs.getInt("dept_id");
+//				employees.add(new Employee(emplId, emplName, salary, emplPosition, managerId, dept));
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		return employees;
+//
+//	}
+
+	// GET Employee(int id, String name, double monthlySalary, String position, int managerId, Department department)
 	@Override
 	public List<Employee> getEmployees() {
 
@@ -23,15 +55,18 @@ public class EmployeePostgres implements EmployeeDao {
 		try (Connection c = ConnectionUtil.getConnection()) {
 			Statement s = c.createStatement();
 			ResultSet rs = s.executeQuery(sql);
+			DepartmentService ds = new DepartmentService();
 
 			while (rs.next()) {
+
 				int emplId = rs.getInt("empl_id");
 				String emplName = rs.getString("empl_name");
 				double salary = rs.getDouble("monthly_salary");
 				String emplPosition = rs.getString("empl_position");
 				int managerId = rs.getInt("manager_id");
-				int dept = rs.getInt("dept_id");
+				Department dept = ds.getDepartmentById(rs.getInt("dept_id"));
 				employees.add(new Employee(emplId, emplName, salary, emplPosition, managerId, dept));
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -42,11 +77,45 @@ public class EmployeePostgres implements EmployeeDao {
 
 	}
 
+	// GET Employee(String name, double monthlySalary, String position, int managerId, int departmentId)
+//	@Override
+//	public Employee getEmployeeById(int id) {
+//		Employee e = null;
+//		ResultSet rs = null;
+//		String sql = "select * from company.employees where empl_id = ?";
+//
+//		try (Connection c = ConnectionUtil.getConnection()) {
+//			PreparedStatement ps = c.prepareStatement(sql);
+//			ps.setInt(1, id);
+//			rs = ps.executeQuery();
+//
+//			while (rs.next()) {
+//				int emplId = rs.getInt("empl_id");
+//				String emplName = rs.getString("empl_name");
+//				double salary = rs.getDouble("monthly_salary");
+//				String emplPosition = rs.getString("empl_position");
+//				int managerId = rs.getInt("manager_id");
+//				int dept = rs.getInt("dept_id");
+//
+//				e = new Employee(emplId, emplName, salary, emplPosition, managerId, dept);
+//			}
+//
+//		} catch (SQLException exc) {
+//			// TODO Auto-generated catch block
+//			exc.printStackTrace();
+//		}
+//
+//		return e;
+//	}
+
+	// GET Employee(int id, String name, double monthlySalary, String position, int
+	// managerId, Department department)
 	@Override
 	public Employee getEmployeeById(int id) {
 		Employee e = null;
 		ResultSet rs = null;
 		String sql = "select * from company.employees where empl_id = ?";
+		DepartmentService ds = new DepartmentService();
 
 		try (Connection c = ConnectionUtil.getConnection()) {
 			PreparedStatement ps = c.prepareStatement(sql);
@@ -59,7 +128,7 @@ public class EmployeePostgres implements EmployeeDao {
 				double salary = rs.getDouble("monthly_salary");
 				String emplPosition = rs.getString("empl_position");
 				int managerId = rs.getInt("manager_id");
-				int dept = rs.getInt("dept_id");
+				Department dept = ds.getDepartmentById(rs.getInt("dept_id"));
 
 				e = new Employee(emplId, emplName, salary, emplPosition, managerId, dept);
 			}

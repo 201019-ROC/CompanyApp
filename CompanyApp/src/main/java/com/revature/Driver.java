@@ -49,10 +49,10 @@ public class Driver {
 //		System.out.println(es.getEmployeeById(5));
 		
 	// Create new employee
-//		Employee e = new Employee("Alex", 5000, "Java developer", 2, 2);
+//		Employee e = new Employee("Alex2", 8000, "JavaScript developer", 1, 1);
 //		System.out.println(es.createEmployee(e));
 //		System.out.println(es.getAllEmployee());
-//		System.out.println(es.getEmployeeById(5));
+//		System.out.println(es.getEmployeeById(28));
 		
 	// Update information about employee
 //		Employee e1 = es.getEmployeeById(1);

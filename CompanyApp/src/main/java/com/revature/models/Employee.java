@@ -18,6 +18,7 @@ public class Employee implements Serializable {
 	private String position;
 	private int managerId;
 	private int departmentId;
+	Department department = new Department();
 	
 	public Employee() {
 		super();
@@ -49,10 +50,16 @@ public class Employee implements Serializable {
 		this.position = position;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Employee [id=" + id + ", name=" + name + ", monthlySalary=" + monthlySalary + ", position=" + position
+//				+ ", managerId=" + managerId + ", department=" + departmentId + "]";
+//	}
+
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", monthlySalary=" + monthlySalary + ", position=" + position
-				+ ", managerId=" + managerId + ", department=" + departmentId + "]";
+				+ ", managerId=" + managerId + ", department=" + department + "]";
 	}
 
 	@Override
@@ -128,8 +135,17 @@ public class Employee implements Serializable {
 		this.managerId = managerId;
 		this.departmentId = departmentId;
 	}
-
 	
+	public Employee(int id, String name, double monthlySalary, String position, int managerId, Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position = position;
+		this.managerId = managerId;
+		this.department = department;
+	}
+		
 	public int getDepartmentId() {
 		return departmentId;
 	}
