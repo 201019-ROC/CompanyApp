@@ -9,19 +9,7 @@ import java.util.Properties;
 public class ConnectionUtil {
 
 	private static Connection connection;
-
-	public static Connection getHardCodedConnection() throws SQLException {
-
-		String url = "jdbc:postgresql://localhost:5432/postgres";
-		String username = "postgres";
-		String password = "Mypostgres@86";
-
-		if (connection == null || connection.isClosed()) {
-			connection = DriverManager.getConnection(url, username, password);
-		}
-		
-		return connection;
-	}
+	
 	
 	public static Connection getConnectionFromFile() throws IOException, SQLException {
 		Properties prop = new Properties();
