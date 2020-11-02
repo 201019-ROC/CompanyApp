@@ -15,9 +15,13 @@ public class Employee implements Serializable {
 	private int managerId;
 	private Department department;
 	
-	public Employee() {
+	public Employee(String name, double monthlySalary, String position, int managerID, Department d ) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position=position;
+		this.managerId=managerID;
+		this.department=d;
 	}
 
 	public int getId() {
@@ -120,6 +124,7 @@ public class Employee implements Serializable {
 	public Department getDepartment() {
 		return department;
 	}
+	
 	public void setDepartment(Department department) {
 		this.department = department;
 	}

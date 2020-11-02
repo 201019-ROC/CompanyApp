@@ -12,11 +12,11 @@ public class Department implements Serializable {
 	private String name;
 	private double monthlyBudget;
 	
-	public Department(String name, double monthlyBudget) {
-		super();
-		this.name = name;
-		this.monthlyBudget = monthlyBudget;
-	}
+//	public Department(String name, double monthlyBudget) {
+//		super();
+//		this.name = name;
+//		this.monthlyBudget = monthlyBudget;
+//	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,10 +58,10 @@ public class Department implements Serializable {
 		this.name = name;
 		this.monthlyBudget = monthlyBudget;
 	}
-	public Department() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+//	public Department() {
+//		super();
+//		// TODO Auto-generated constructor stub
+//	}
 	public int getId() {
 		return id;
 	}
