@@ -14,10 +14,10 @@ public class Employee implements Serializable {
 	private String position;
 	private int managerId;
 	private Department department;
+	private int departmentId;
 	
-	public Employee() {
+	public Employee(int emplId, String emplName, double monthlySalary2, String emplPosition, int managerId2, int deptId) {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -44,11 +44,17 @@ public class Employee implements Serializable {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-
+	public int getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+	
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", monthlySalary=" + monthlySalary + ", position=" + position
-				+ ", managerId=" + managerId + ", department=" + department + "]";
+				+ ", managerId=" + managerId + ", department=" + departmentId + "]";
 	}
 
 	@Override
