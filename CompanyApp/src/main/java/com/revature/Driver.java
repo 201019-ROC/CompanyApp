@@ -1,6 +1,10 @@
 package com.revature;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import com.revature.services.DepartmentService;
+import com.revature.util.ConnectionUtil;
 
 public class Driver {
 
@@ -8,19 +12,19 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
-//		try {
-//			
-//			Connection c = ConnectionUtil.getConnection();
-//			String driverName = c.getMetaData().getDriverName();
-//			System.out.println(driverName);
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			
+			Connection c = ConnectionUtil.getConnection();
+			String driverName = c.getMetaData().getDriverName();
+			System.out.println(driverName);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 
-//		System.out.println(ds.getAllDepartments());
+		System.out.println(ds.getAllDepartments());
 //		System.out.println(ds.getDepartmentById(1));
 		
 //		Department d = new Department("Coffee", 5000);
