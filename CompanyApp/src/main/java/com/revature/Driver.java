@@ -3,12 +3,12 @@ package com.revature;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.revature.services.DepartmentService;
+import com.revature.services.*;
 import com.revature.util.ConnectionUtil;
 
 public class Driver {
 
-	private static DepartmentService ds = new DepartmentService();
+	private static EmployeeService ds = new EmployeeService();
 	
 	public static void main(String[] args) {
 		
@@ -24,7 +24,7 @@ public class Driver {
 		}
 	
 
-		System.out.println(ds.getAllDepartments());
+		System.out.println(ds.getAllEmployees());
 //		System.out.println(ds.getDepartmentById(1));
 		
 //		Department d = new Department("Coffee", 5000);
@@ -38,9 +38,9 @@ public class Driver {
 		
 //		System.out.println(ds.deleteDepartment(13));
 		
-		System.out.println(ds.getDepartmentById(1));
-		ds.budgetIncrease(500, 1);
-		System.out.println(ds.getDepartmentById(1));
+		//System.out.println(ds.getDepartmentById(1));
+		//ds.budgetIncrease(500, 1);
+		//System.out.println(ds.getDepartmentById(1));
 	}
 
 }
