@@ -1,5 +1,6 @@
 package com.revature.daos;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -21,7 +22,7 @@ public class DepartmentPostgres implements DepartmentDao {
 		List<Department> departments = new ArrayList<>();
 		String sql = "select * from company.departments";
 
-		try (Connection c = ConnectionUtil.getConnection()) {
+		try (Connection c = ConnectionUtil.getConnectionFromFile()) {
 			Statement s = c.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 
@@ -35,6 +36,9 @@ public class DepartmentPostgres implements DepartmentDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		return departments;
@@ -46,7 +50,7 @@ public class DepartmentPostgres implements DepartmentDao {
 		ResultSet rs = null;
 		String sql = "select * from company.departments where dept_id = ?";
 
-		try (Connection c = ConnectionUtil.getConnection()) {
+		try (Connection c = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
@@ -61,6 +65,9 @@ public class DepartmentPostgres implements DepartmentDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		return d;
@@ -71,7 +78,7 @@ public class DepartmentPostgres implements DepartmentDao {
 		int departmentsCreated = 0;
 		String sql = "insert into company.departments (dept_name, monthly_budget) values (?, ?)";
 		
-		try (Connection c = ConnectionUtil.getConnection()) {
+		try (Connection c = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = c.prepareStatement(sql);
 			
 			ps.setString(1, d.getName());
@@ -82,6 +89,9 @@ public class DepartmentPostgres implements DepartmentDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
 		return departmentsCreated;
@@ -92,7 +102,7 @@ public class DepartmentPostgres implements DepartmentDao {
 		int departmentsUpdated = 0;
 		String sql = "update company.departments set dept_name = ? , monthly_budget = ? where dept_id = ?";
 		
-		try (Connection c = ConnectionUtil.getConnection()) {
+		try (Connection c = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = c.prepareStatement(sql);
 			
 			ps.setString(1, d.getName());
@@ -104,6 +114,9 @@ public class DepartmentPostgres implements DepartmentDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
 		return departmentsUpdated;
@@ -114,7 +127,7 @@ public class DepartmentPostgres implements DepartmentDao {
 		int departmentsDeleted = 0;
 		String sql = "delete from company.departments where dept_id = ?";
 		
-		try (Connection c = ConnectionUtil.getConnection()) {
+		try (Connection c = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = c.prepareStatement(sql);
 			
 			ps.setInt(1, id);
@@ -124,6 +137,9 @@ public class DepartmentPostgres implements DepartmentDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
 		return departmentsDeleted;
@@ -133,7 +149,7 @@ public class DepartmentPostgres implements DepartmentDao {
 	public void budgetIncrease(double increase, int id) {
 		String sql = "{call company.increase_budget(?,?)}";
 		
-		try (Connection c = ConnectionUtil.getConnection()){
+		try (Connection c = ConnectionUtil.getConnectionFromFile()){
 			CallableStatement cs = c.prepareCall(sql);
 			cs.setBigDecimal(1, new BigDecimal(increase));
 			cs.setInt(2, id);
@@ -143,6 +159,9 @@ public class DepartmentPostgres implements DepartmentDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 
