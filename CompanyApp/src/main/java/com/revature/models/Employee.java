@@ -3,10 +3,7 @@ package com.revature.models;
 import java.io.Serializable;
 
 public class Employee implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
@@ -18,6 +15,16 @@ public class Employee implements Serializable {
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Employee(int id, String name, double monthlySalary, String position, int managerId, Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.monthlySalary = monthlySalary;
+		this.position = position;
+		this.managerId = managerId;
+		this.department = department;
 	}
 
 	public int getId() {
@@ -43,6 +50,21 @@ public class Employee implements Serializable {
 	}
 	public void setPosition(String position) {
 		this.position = position;
+	}
+	
+	public int getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(int managerId) {
+		this.managerId = managerId;
+	}	
+
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override
@@ -97,33 +119,5 @@ public class Employee implements Serializable {
 		} else if (!position.equals(other.position))
 			return false;
 		return true;
-	}
-
-	public int getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
-	}
-
-	public Employee(int id, String name, double monthlySalary, String position, int managerId, Department department) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.monthlySalary = monthlySalary;
-		this.position = position;
-		this.managerId = managerId;
-		this.department = department;
-	}
-
-	public Department getDepartment() {
-		return department;
-	}
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-
-	
-	
+	}	
 }

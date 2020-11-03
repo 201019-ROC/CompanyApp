@@ -3,20 +3,53 @@ package com.revature.models;
 import java.io.Serializable;
 
 public class Department implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private double monthlyBudget;
+	
+	public Department() {
+		super();
+	}
 	
 	public Department(String name, double monthlyBudget) {
 		super();
 		this.name = name;
 		this.monthlyBudget = monthlyBudget;
 	}
+	
+	public Department(int id, String name, double monthlyBudget) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.monthlyBudget = monthlyBudget;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public double getMonthlyBudget() {
+		return monthlyBudget;
+	}
+	
+	public void setMonthlyBudget(double monthlyBudget) {
+		this.monthlyBudget = monthlyBudget;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -28,6 +61,7 @@ public class Department implements Serializable {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -48,38 +82,9 @@ public class Department implements Serializable {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + ", monthlyBudget=" + monthlyBudget + "]";
-	}
-	public Department(int id, String name, double monthlyBudget) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.monthlyBudget = monthlyBudget;
-	}
-	public Department() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public double getMonthlyBudget() {
-		return monthlyBudget;
-	}
-	public void setMonthlyBudget(double monthlyBudget) {
-		this.monthlyBudget = monthlyBudget;
-	}
-	
-	
+	}	
 }

@@ -1,6 +1,8 @@
 package com.revature;
 
+import com.revature.daos.EmployeePostgres;
 import com.revature.models.Department;
+import com.revature.models.Employee;
 import com.revature.services.DepartmentService;
 
 public class Driver {
@@ -34,9 +36,30 @@ public class Driver {
 //		System.out.println(ds.getDepartmentById(4));
 		
 		
-		System.out.println(ds.getDepartmentById(1));		
-		ds.budgetIncrease(500, 1);
-		System.out.println(ds.getDepartmentById(1));
-	}
+//		System.out.println(ds.getDepartmentById(1));		
+//		ds.budgetIncrease(500, 1);
+//		System.out.println(ds.getDepartmentById(1));
+		
+		EmployeePostgres ep = new EmployeePostgres();
+		
+		System.out.println(ep.getEmployees());
+//		System.out.println(ep.getEmployeeById(2));
+		
+//		System.out.println(ep.getEmployees());
+//		Department dept = ds.getDepartmentById(3);
+//		Employee e = new Employee(69, "Alfred", 69.69, "Clerk", 3, dept);
+//		System.out.println(ep.createEmployee(e));
+//		System.out.println(ep.getEmployees());
+		
+//		System.out.println(ep.getEmployees());
+//		Department dept = ds.getDepartmentById(2);
+//		Employee e = new Employee(14, "Alfred", 699.69, "Clerk", 3, dept);
+//		System.out.println(ep.updateEmployee(e));
+//		System.out.println(ep.getEmployees());
 
+		ep.deleteEmployee(14);
+		ep.deleteEmployee(15);
+		ep.deleteEmployee(16);
+		System.out.println(ep.getEmployees());
+	}
 }
