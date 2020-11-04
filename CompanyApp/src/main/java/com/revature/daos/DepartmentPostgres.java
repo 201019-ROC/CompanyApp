@@ -21,7 +21,8 @@ public class DepartmentPostgres implements DepartmentDao {
 		List<Department> departments = new ArrayList<>();
 		String sql = "select * from company.departments";
 
-		try (Connection c = ConnectionUtil.getConnection()) {
+		try {
+			Connection c = ConnectionUtil.getConnection();
 			Statement s = c.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 

@@ -19,36 +19,57 @@ public class ConnectionUtil {
 		if (connection == null || connection.isClosed()) {
 			connection = DriverManager.getConnection(url, username, password);
 		}
-		
+
 		return connection;
 	}
-	
+
 	public static Connection getConnectionFromFile() throws IOException, SQLException {
 		Properties prop = new Properties();
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		prop.load(loader.getResourceAsStream("connection.properties"));
-		
+
 		String url = prop.getProperty("url");
 		String username = prop.getProperty("username");
 		String password = prop.getProperty("password");
-		
+
 		if (connection == null || connection.isClosed()) {
 			connection = DriverManager.getConnection(url, username, password);
 		}
-		
+
 		return connection;
 	}
-	
+
 	public static Connection getConnection() throws SQLException {
-		
-		String url = System.getenv("JDBC_DB_HOST");
-		String username = System.getenv("JDBC_DB_USER");
-		String password = System.getenv("JDBC_DB_PASS");
-		
-		if (connection == null || connection.isClosed()) {
-			connection = DriverManager.getConnection(url, username, password);
+		boolean isTest = Boolean.valueOf(System.getenv("DB_TEST"));
+
+		if (isTest) {
+			
+			return getH2Connection();
+			
+		} else {
+			String url = System.getenv("JDBC_DB_HOST");
+			String username = System.getenv("JDBC_DB_USER");
+			String password = System.getenv("JDBC_DB_PASS");
+
+			if (connection == null || connection.isClosed()) {
+				connection = DriverManager.getConnection(url, username, password);
+			}
+
+			return connection;
 		}
-		
+	}
+
+	public static Connection getH2Connection() {
+
+		try {
+			if (connection == null || connection.isClosed()) {
+				connection = DriverManager.getConnection("jdbc:h2:~/test");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return connection;
 	}
 }
