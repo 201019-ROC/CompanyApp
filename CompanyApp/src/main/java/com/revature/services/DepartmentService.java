@@ -8,7 +8,7 @@ import com.revature.models.Department;
 
 public class DepartmentService {
 	
-	private static DepartmentDao dd = new DepartmentPostgres();
+	private DepartmentDao dd = new DepartmentPostgres();
 	
 	public List<Department> getAllDepartments(){
 		return dd.getDepartments();

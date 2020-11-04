@@ -50,6 +50,7 @@ public class DepartmentDaoTest {
 	
 	@Test 
 	public void updateDepartmentTest(){
+		
 		assertEquals(1, dd.updateDepartment(new Department(1, "HR", 5001)));
 	}
 	

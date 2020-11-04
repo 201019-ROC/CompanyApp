@@ -1,11 +1,10 @@
 package com.revature;
 
-import com.revature.daos.EmployeeDao;
 import com.revature.services.DepartmentService;
 
 public class Driver {
 
-	private static DepartmentService ds = new DepartmentService();
+	private DepartmentService ds = new DepartmentService();
 	
 	public static void main(String[] args) {
 		
