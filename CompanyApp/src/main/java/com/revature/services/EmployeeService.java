@@ -15,11 +15,11 @@ public class EmployeeService {
 		return ee.getEmployees();
 	}
 	
-	public Employee getDepartmentById(int id) {
+	public Employee getEmployeeById(int id) {
 		return ee.getEmployeeById(id);
 	}
 	
-	public boolean createDepartment(Employee e) {
+	public boolean createEmployee(Employee e) {
 		int deptCreated = ee.createEmployee(e);
 		if(deptCreated != 0) {
 			return true;
@@ -28,7 +28,7 @@ public class EmployeeService {
 		}
 	}
 	
-	public boolean updateDepartment(Employee e) {
+	public boolean updateEmployee(Employee e) {
 		int deptupdated = ee.updateEmployee(e);
 		if(deptupdated != 0) {
 			return true;
@@ -37,7 +37,7 @@ public class EmployeeService {
 		}
 	}
 	
-	public boolean deleteDepartment(int id) {
+	public boolean deleteEmployee(int id) {
 		int deptDeleted = ee.deleteEmployee(id);
 		if(deptDeleted != 0) {
 			return true;

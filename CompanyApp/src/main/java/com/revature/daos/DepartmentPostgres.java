@@ -14,6 +14,27 @@ import com.revature.models.Department;
 import com.revature.util.ConnectionUtil;
 
 public class DepartmentPostgres implements DepartmentDao {
+	
+	@Override
+	public int createDepartment(Department d) {
+		int departmentsCreated = 0;
+		String sql = "insert into company.departments (dept_name, monthly_budget) values (?, ?)";
+		
+		try (Connection c = ConnectionUtil.getConnection()) {
+			PreparedStatement ps = c.prepareStatement(sql);
+			
+			ps.setString(1, d.getName());
+			ps.setDouble(2, d.getMonthlyBudget());
+			
+			departmentsCreated = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return departmentsCreated;
+	}
 
 	@Override
 	public List<Department> getDepartments() {
@@ -63,27 +84,6 @@ public class DepartmentPostgres implements DepartmentDao {
 		}
 
 		return d;
-	}
-
-	@Override
-	public int createDepartment(Department d) {
-		int departmentsCreated = 0;
-		String sql = "insert into company.departments (dept_name, monthly_budget) values (?, ?)";
-		
-		try (Connection c = ConnectionUtil.getConnection()) {
-			PreparedStatement ps = c.prepareStatement(sql);
-			
-			ps.setString(1, d.getName());
-			ps.setDouble(2, d.getMonthlyBudget());
-			
-			departmentsCreated = ps.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return departmentsCreated;
 	}
 
 	@Override
@@ -144,5 +144,4 @@ public class DepartmentPostgres implements DepartmentDao {
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -12,6 +12,29 @@ import com.revature.models.Employee;
 import com.revature.util.ConnectionUtil;
 
 public class EmployeePostgres implements EmployeeDao{
+	
+	@Override
+	public int createEmployee(Employee e) {
+		int employeesCreated = 0;
+		String sql = "insert into company.employees " +
+				"(empl_name,  monthly_salary,  empl_position,  manager_id,  dept_id) values (?, ?, ?, ?, ?)";
+		
+		try (Connection c = ConnectionUtil.getConnection()) {
+			PreparedStatement ps = c.prepareStatement(sql);
+			
+			ps.setString(1, e.getName());
+			ps.setDouble(2, e.getMonthlySalary());
+			ps.setString(3, e.getPosition());
+			ps.setInt(4, e.getManagerId());
+			Department dept = e.getDepartment();
+			ps.setInt(5, dept.getId());			
+			employeesCreated = ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return employeesCreated;
+	}
 
 	@Override
 	public List<Employee> getEmployees() {
@@ -78,32 +101,9 @@ public class EmployeePostgres implements EmployeeDao{
 	}
 
 	@Override
-	public int createEmployee(Employee e) {
-		int employeesCreated = 0;
-		String sql = "insert into company.employees " +
-				"(empl_name,  monthly_salary,  empl_position,  manager_id,  dept_id) values (?, ?, ?, ?, ?)";
-		
-		try (Connection c = ConnectionUtil.getConnection()) {
-			PreparedStatement ps = c.prepareStatement(sql);
-			
-			ps.setString(1, e.getName());
-			ps.setDouble(2, e.getMonthlySalary());
-			ps.setString(3, e.getPosition());
-			ps.setInt(4, e.getManagerId());
-			Department dept = e.getDepartment();
-			ps.setInt(5, dept.getId());			
-			employeesCreated = ps.executeUpdate();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-		
-		return employeesCreated;
-	}
-
-	@Override
 	public int updateEmployee(Employee e) {
 		int employeesUpdated = 0;
-		String sql = "update company.employees set empl_name = ? , monthly_salary = ?, empl_position = ?, manager_id = ?, dept_id = ? where empl_id = ?";
+		String sql = "update company.employees set empl_name = ?, monthly_salary = ?, empl_position = ?, manager_id = ?, dept_id = ? where empl_id = ?";
 		
 		try (Connection c = ConnectionUtil.getConnection()) {
 			PreparedStatement ps = c.prepareStatement(sql);
